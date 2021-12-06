@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Mobile Workforce Management App</string>
+    <string name="add_button_title">Add Item</string>
+    <string name="edit_button_title">Edit</string>
+    <string name="delete_button_title">Delete</string>
+    <string name="complete_button_title">Complete</string>
+    <string name="undo_button_title">Undo</string>
+    <string name="status_not_complete_title">Status: Not Complete</string>
+    <string name="status_completed_title">Status: Completed</string>
+    <string name="update_item_title">Update Item</string>
+    <string name="add_item_title">Add Item</string>
+    <string name="close_button_title">Close</string>
+    <string name="description_hint">Description...</string>
+</resources>

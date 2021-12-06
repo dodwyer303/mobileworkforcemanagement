@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="8dp"
+    android:background="@drawable/todo_item_background"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/todo_item_description_textview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/todo_item_delete_button"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/todo_item_guide_vertical"
+        app:layout_constraintTop_toTopOf="@+id/todo_item_edit_button"
+        tools:text="Description: " />
+
+    <Button
+        android:id="@+id/todo_item_edit_button"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:text="@string/edit_button_title"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toTopOf="@+id/todo_item_delete_button"
+        app:layout_constraintLeft_toLeftOf="@+id/todo_item_guide_vertical"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="spread"
+        tools:text="Edit" />
+
+    <Button
+        android:id="@+id/todo_item_delete_button"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:text="@string/delete_button_title"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toTopOf="@+id/todo_item_status_change_button"
+        app:layout_constraintLeft_toLeftOf="@+id/todo_item_guide_vertical"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/todo_item_edit_button"
+        tools:text="Delete" />
+
+    <Button
+        android:id="@+id/todo_item_status_change_button"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/todo_item_guide_vertical"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/todo_item_delete_button"
+        tools:text="Complete" />
+
+    <TextView
+        android:id="@+id/todo_item_status_textview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/todo_item_status_change_button"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/todo_item_guide_vertical"
+        app:layout_constraintTop_toTopOf="@+id/todo_item_status_change_button"
+        tools:text="Status: " />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:src="@drawable/dashed_line"
+        android:layerType="software"
+        app:layout_constraintBottom_toTopOf="@+id/todo_item_status_change_button"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/todo_item_delete_button" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/todo_item_guide_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".7" />
+</androidx.constraintlayout.widget.ConstraintLayout>
