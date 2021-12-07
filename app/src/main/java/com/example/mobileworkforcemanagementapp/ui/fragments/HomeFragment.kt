@@ -65,15 +65,28 @@ open class HomeFragment: Fragment(R.layout.fragment_home), TodoListener {
 
     override fun onUndoClicked(toDoItem: ToDoItem) {
         if(toDoItem.id != null && toDoItem.description != null && toDoItem.completed) {
-            var updatedToDoItem = ToDoItem.Builder().id(toDoItem.id).description(toDoItem.description).completed(false).build()
+            val updatedToDoItem = ToDoItem.Builder().id(toDoItem.id).description(toDoItem.description).completed(false).build()
             todoItemViewModel?.updateToDoItem(updatedToDoItem)
         }
     }
 
     override fun onCompleteClicked(toDoItem: ToDoItem) {
         if(toDoItem.id != null && toDoItem.description != null && !toDoItem.completed) {
-            var updatedToDoItem = ToDoItem.Builder().id(toDoItem.id).description(toDoItem.description).completed(true).build()
+            val updatedToDoItem = ToDoItem.Builder().id(toDoItem.id).description(toDoItem.description).completed(true).build()
             todoItemViewModel?.updateToDoItem(updatedToDoItem)
+        }
+    }
+
+    override fun addSignatureClicked(toDoItem: ToDoItem) {
+        if(toDoItem.id != null && toDoItem.description != null && toDoItem.signatureUrl.isNullOrEmpty()) {
+            val action = HomeFragmentDirections.actionHomeFragmentToAddSignatureFragment(toDoItem)
+            navController?.navigate(action)
+        }
+    }
+
+    override fun removeSignatureClicked(toDoItem: ToDoItem) {
+        if(toDoItem.id != null && toDoItem.description != null && !toDoItem.signatureUrl.isNullOrEmpty()) {
+            todoItemViewModel?.removeSignatureFromToDoItem(toDoItem)
         }
     }
 }

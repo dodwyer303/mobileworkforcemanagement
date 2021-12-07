@@ -27,7 +27,7 @@ class AddEditFragment: Fragment(R.layout.fragment_add_edit) {
     @Inject lateinit var viewModelFactory: ViewModelFactory
     private var todoItemViewModel: TodoItemViewModel? = null
     private var editedtoDoItem: ToDoItem? = null
-    var fragmentState: FragmentState = FragmentState.ADD_ITEM
+    private var fragmentState: FragmentState = FragmentState.ADD_ITEM
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -80,7 +80,7 @@ class AddEditFragment: Fragment(R.layout.fragment_add_edit) {
             editedtoDoItem = it?.get(ITEM_TO_EDIT_BUNDLE_KEY) as ToDoItem?
             fragmentState = if (editedtoDoItem == null) FragmentState.ADD_ITEM else FragmentState.EDIT_ITEM
         }
-        var addEditString = if (fragmentState == FragmentState.ADD_ITEM) view.context.getString(R.string.add_item_title) else view.context.getString(R.string.update_item_title)
+        val addEditString = if (fragmentState == FragmentState.ADD_ITEM) view.context.getString(R.string.add_item_title) else view.context.getString(R.string.update_item_title)
         addEditFragmentTitle?.text = addEditString
         addEditItemButton?.text = addEditString
         if(fragmentState == FragmentState.EDIT_ITEM && editedtoDoItem?.description != null) {

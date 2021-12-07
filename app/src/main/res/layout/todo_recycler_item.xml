@@ -27,7 +27,7 @@
         app:layout_constraintLeft_toLeftOf="@+id/todo_item_guide_vertical"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="spread"
+        app:layout_constraintVertical_chainStyle="spread_inside"
         tools:text="Edit" />
 
     <Button
@@ -47,7 +47,7 @@
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/todo_item_add_signature_button"
         app:layout_constraintLeft_toLeftOf="@+id/todo_item_guide_vertical"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/todo_item_delete_button"
@@ -72,6 +72,58 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/todo_item_delete_button" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:src="@drawable/dashed_line"
+        android:layerType="software"
+        app:layout_constraintBottom_toTopOf="@+id/todo_item_add_signature_button"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/todo_item_status_change_button" />
+
+    <Button
+        android:id="@+id/todo_item_add_signature_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/add_signature_title"
+        android:textSize="10sp"
+        app:layout_constraintTop_toBottomOf="@+id/todo_item_status_change_button"
+        app:layout_constraintLeft_toLeftOf="@+id/todo_item_guide_vertical"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="@string/add_signature_title" />
+
+    <TextView
+        android:id="@+id/todo_item_signature_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/signature_title"
+        app:layout_constraintVertical_chainStyle="spread_inside"
+        app:layout_constraintBottom_toBottomOf="@+id/todo_item_add_signature_button"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/todo_item_signature_image_view"
+        app:layout_constraintTop_toTopOf="@+id/todo_item_add_signature_button"
+         />
+
+    <ImageView
+        android:id="@+id/todo_item_signature_image_view"
+        android:layout_width="120dp"
+        android:layout_height="32dp"
+        app:layout_constraintBottom_toBottomOf="@+id/todo_item_add_signature_button"
+        app:layout_constraintLeft_toRightOf="@+id/todo_item_signature_textview"
+        app:layout_constraintTop_toTopOf="@+id/todo_item_add_signature_button" />
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="5dp"
+        android:src="@drawable/full_line"
+        android:layerType="software"
+        app:layout_constraintTop_toBottomOf="@+id/todo_item_signature_image_view"
+        app:layout_constraintLeft_toLeftOf="@+id/todo_item_signature_image_view"
+        app:layout_constraintRight_toRightOf="@+id/todo_item_signature_image_view"
+ />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/todo_item_guide_vertical"

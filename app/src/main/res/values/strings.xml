@@ -11,4 +11,7 @@
     <string name="add_item_title">Add Item</string>
     <string name="close_button_title">Close</string>
     <string name="description_hint">Description...</string>
+    <string name="add_signature_title">Add Signature</string>
+    <string name="remove_signature_title">Remove Signature</string>
+    <string name="signature_title">Signature: </string>
 </resources>

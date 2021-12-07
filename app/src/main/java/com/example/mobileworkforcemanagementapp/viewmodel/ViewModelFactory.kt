@@ -3,7 +3,6 @@ package com.example.mobileworkforcemanagementapp.viewmodel
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.mobileworkforcemanagementapp.database.DatabaseHelper
 import javax.inject.Inject
 import javax.inject.Singleton
 

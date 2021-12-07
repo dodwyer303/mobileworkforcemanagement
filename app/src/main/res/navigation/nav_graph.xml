@@ -17,10 +17,23 @@
             app:nullable="true"
             android:defaultValue="@null" />
         </action>
+        <action
+            android:id="@+id/action_homeFragment_to_addSignatureFragment"
+            app:destination="@id/addSignatureFragment" >
+            <argument
+                android:name="itemToAddSignature"
+                app:argType="com.example.mobileworkforcemanagementapp.model.ToDoItem"
+                app:nullable="true"
+                android:defaultValue="@null" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/editFragment"
         android:name="com.example.mobileworkforcemanagementapp.ui.fragments.AddEditFragment"
         android:label="EditFragment" >
     </fragment>
+    <fragment
+        android:id="@+id/addSignatureFragment"
+        android:name="com.example.mobileworkforcemanagementapp.ui.fragments.AddSignatureFragment"
+        android:label="AddSignatureFragment" />
 </navigation>
