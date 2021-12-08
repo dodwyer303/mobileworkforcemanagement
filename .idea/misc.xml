@@ -7,10 +7,11 @@
         <entry key="app/src/main/res/drawable/dashed_line.xml" value="0.20677083333333332" />
         <entry key="app/src/main/res/drawable/description_background.xml" value="0.5234375" />
         <entry key="app/src/main/res/drawable/full_line.xml" value="0.31614583333333335" />
+        <entry key="app/src/main/res/drawable/rounded_button.xml" value="0.14907407407407408" />
         <entry key="app/src/main/res/drawable/todo_item_background.xml" value="0.20677083333333332" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19635416666666666" />
-        <entry key="app/src/main/res/layout/fragment_add_edit.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_add_signature.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_add_edit.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_add_signature.xml" value="0.375" />
         <entry key="app/src/main/res/layout/fragment_edit.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/todo_recycler_item.xml" value="0.33" />

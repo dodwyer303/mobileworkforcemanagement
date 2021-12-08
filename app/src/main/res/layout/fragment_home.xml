@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="8dp"
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -10,19 +10,64 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scrollbars="vertical"
+        android:layout_marginTop="@dimen/dimen_x_small"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/recyclerview_guide_top_horizontal" />
+        app:layout_constraintLeft_toLeftOf="@+id/guide_left_vertical"
+        app:layout_constraintRight_toRightOf="@+id/guide_right_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/todo_item_radio_group" />
     <Button
         android:id="@+id/add_todo_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/recyclerview_guide_top_horizontal"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:backgroundTint="@color/primary_blue"
+        android:layout_marginTop="@dimen/dimen_medium"
+        app:layout_constraintRight_toRightOf="@id/guide_right_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/todo_list_title"
         android:text="@string/add_button_title"
         />
+
+    <RadioGroup
+        android:id="@+id/todo_item_radio_group"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/dimen_medium"
+        app:layout_constraintLeft_toRightOf="@id/guide_left_vertical"
+        app:layout_constraintRight_toRightOf="@id/guide_right_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/add_todo_button" >
+        <RadioButton
+            android:id="@+id/all_radio_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/all_radio_title"
+            android:checked="true"
+            android:buttonTint="@color/primary_blue" />
+        <RadioButton
+            android:id="@+id/not_complete_radio_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/primary_blue"
+            android:text="@string/not_complete_radio_title" />
+        <RadioButton
+            android:id="@+id/completed_radio_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/primary_blue"
+            android:text="@string/completed_radio_title" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/todo_list_empty_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_large"
+        android:layout_marginTop="@dimen/dimen_medium"
+        android:text="@string/todo_items_empty_title"
+        android:textAlignment="center"
+        app:layout_constraintLeft_toLeftOf="@+id/guide_left_vertical"
+        app:layout_constraintRight_toRightOf="@+id/guide_right_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/add_todo_button"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/recyclerview_guide_top_horizontal"
@@ -30,6 +75,51 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent=".1"/>
+
+    <TextView
+        android:id="@+id/todo_list_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/secondary_blue"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_large"
+        android:layout_marginTop="@dimen/dimen_medium"
+        android:text="@string/todo_item_list_title"
+        android:textAlignment="center"
+        app:layout_constraintLeft_toLeftOf="@+id/guide_left_vertical"
+        app:layout_constraintRight_toRightOf="@+id/guide_right_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/guide_top_horizontal" />
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="4dp"
+        android:src="@drawable/full_line"
+        android:layerType="software"
+        app:layout_constraintTop_toBottomOf="@+id/todo_list_title"
+        app:layout_constraintLeft_toLeftOf="@+id/guide_left_vertical"
+        app:layout_constraintRight_toRightOf="@+id/guide_right_vertical"
+        tools:ignore="ContentDescription" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide_top_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".05"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide_left_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".02"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide_right_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".98"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

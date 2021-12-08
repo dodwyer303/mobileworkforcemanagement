@@ -2,27 +2,41 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
         android:id="@+id/close_text_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/close_button_title"
+        android:text="@string/back_button_title"
         android:textSize="20sp"
         app:layout_constraintLeft_toRightOf="@+id/guide_left_vertical"
         app:layout_constraintBottom_toTopOf="@+id/guide_top_horizontal" />
 
     <TextView
         android:id="@+id/add_signature_fragment_title"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@color/secondary_blue"
+        android:textColor="@android:color/white"
         android:textSize="@dimen/text_large"
-        android:layout_marginTop="@dimen/dimen_xx_large"
+        android:layout_marginTop="@dimen/dimen_medium"
         android:text="@string/add_signature_title"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:textAlignment="center"
+        app:layout_constraintLeft_toLeftOf="@+id/guide_left_vertical"
+        app:layout_constraintRight_toRightOf="@+id/guide_right_vertical"
         app:layout_constraintTop_toBottomOf="@+id/guide_top_horizontal" />
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="4dp"
+        android:src="@drawable/full_line"
+        android:layerType="software"
+        app:layout_constraintTop_toBottomOf="@+id/add_signature_fragment_title"
+        app:layout_constraintLeft_toLeftOf="@+id/guide_left_vertical"
+        app:layout_constraintRight_toRightOf="@+id/guide_right_vertical"
+        tools:ignore="ContentDescription" />
 
     <FrameLayout
         android:id="@+id/signature_view_layout"
@@ -51,6 +65,7 @@
         android:id="@+id/add_signature_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/primary_blue"
         android:text="@string/add_signature_title"
         android:layout_marginTop="@dimen/dimen_xx_large"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -61,6 +76,7 @@
         android:id="@+id/clear_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/primary_blue"
         android:text="@string/clear_title"
         android:layout_marginTop="@dimen/dimen_medium"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -79,13 +95,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent=".05"/>
+        app:layout_constraintGuide_percent=".02"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guide_right_vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent=".95"/>
+        app:layout_constraintGuide_percent=".98"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

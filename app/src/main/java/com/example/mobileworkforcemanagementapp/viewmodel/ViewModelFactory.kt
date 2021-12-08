@@ -12,6 +12,7 @@ class ViewModelFactory @Inject constructor(private val application: Application)
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return when {
             modelClass.isAssignableFrom(TodoItemViewModel::class.java) -> TodoItemViewModel(application) as T
+            modelClass.isAssignableFrom(ViewEventViewModel::class.java) -> ViewEventViewModel() as T
             else ->  throw IllegalArgumentException("Unknown class name")
         }
     }

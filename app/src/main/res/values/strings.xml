@@ -1,20 +1,25 @@
 <resources>
     <string name="app_name">Mobile Workforce Management App</string>
     <string name="description_title">Description:</string>
+    <string name="todo_item_list_title">Item List</string>
     <string name="add_button_title">Add Item</string>
     <string name="edit_button_title">Edit</string>
     <string name="delete_button_title">Delete</string>
+    <string name="all_radio_title">All</string>
+    <string name="not_complete_radio_title">Not Complete</string>
+    <string name="completed_radio_title">Completed</string>
     <string name="complete_button_title">Complete</string>
     <string name="undo_button_title">Undo</string>
     <string name="status_not_complete_title">Status: Not Complete</string>
     <string name="status_completed_title">Status: Completed</string>
     <string name="update_item_title">Update Item</string>
     <string name="add_item_title">Add Item</string>
-    <string name="close_button_title">Close</string>
+    <string name="back_button_title">Back</string>
     <string name="description_hint">Description...</string>
     <string name="add_signature_title">Add Signature</string>
     <string name="clear_title">Clear</string>
     <string name="remove_signature_title">Remove Signature</string>
     <string name="signature_title">Signature:\u0020</string>
     <string name="completed_status_placeholder">%1$s %2$s</string>
+    <string name="todo_items_empty_title">There are no items to show</string>
 </resources>

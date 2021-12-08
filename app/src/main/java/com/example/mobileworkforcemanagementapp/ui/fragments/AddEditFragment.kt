@@ -15,6 +15,7 @@ import com.example.mobileworkforcemanagementapp.R
 import com.example.mobileworkforcemanagementapp.model.ToDoItem
 import com.example.mobileworkforcemanagementapp.ui.MainActivity
 import com.example.mobileworkforcemanagementapp.viewmodel.TodoItemViewModel
+import com.example.mobileworkforcemanagementapp.viewmodel.ViewEventViewModel
 import com.example.mobileworkforcemanagementapp.viewmodel.ViewModelFactory
 import javax.inject.Inject
 
@@ -26,6 +27,7 @@ class AddEditFragment: Fragment(R.layout.fragment_add_edit) {
     private var navController: NavController? = null
     @Inject lateinit var viewModelFactory: ViewModelFactory
     private var todoItemViewModel: TodoItemViewModel? = null
+    private var viewEventViewModel: ViewEventViewModel? = null
     private var editedToDoItem: ToDoItem? = null
     private var fragmentState: FragmentState = FragmentState.ADD_ITEM
 
@@ -45,6 +47,7 @@ class AddEditFragment: Fragment(R.layout.fragment_add_edit) {
                         !descriptionEditText?.editableText.isNullOrEmpty() -> {
                             todoItemViewModel?.addTodoItem(ToDoItem.Builder().description(descriptionEditText?.editableText.toString()).completed(false).build())
                             Toast.makeText(view.context, "New Item Added!",Toast.LENGTH_LONG).show()
+                            viewEventViewModel?.emitCloseSoftKeyboardEvent()
                             navController?.popBackStack()
                         }
                         else -> {
@@ -59,6 +62,7 @@ class AddEditFragment: Fragment(R.layout.fragment_add_edit) {
                                 if(it.id != null) {
                                     todoItemViewModel?.updateToDoItem(ToDoItem.Builder().id(it.id).description(descriptionEditText?.editableText.toString()).completed(it.completed).build())
                                     Toast.makeText(view.context, "Item Updated!",Toast.LENGTH_LONG).show()
+                                    viewEventViewModel?.emitCloseSoftKeyboardEvent()
                                     navController?.popBackStack()
                                 }
                             } ?: Toast.makeText(view.context, "Something went wrong!",Toast.LENGTH_LONG).show()
@@ -71,10 +75,12 @@ class AddEditFragment: Fragment(R.layout.fragment_add_edit) {
             }
         }
         closeTextView?.setOnClickListener {
+            viewEventViewModel?.emitCloseSoftKeyboardEvent()
             navController?.popBackStack()
         }
         activity?.let {
             todoItemViewModel = ViewModelProvider(it as MainActivity, viewModelFactory)[TodoItemViewModel::class.java]
+            viewEventViewModel = ViewModelProvider(it, viewModelFactory)[ViewEventViewModel::class.java]
         }
         arguments.let {
             editedToDoItem = it?.get(ITEM_TO_EDIT_BUNDLE_KEY) as ToDoItem?

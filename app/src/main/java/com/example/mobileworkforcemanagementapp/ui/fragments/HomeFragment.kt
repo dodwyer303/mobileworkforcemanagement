@@ -3,6 +3,8 @@ package com.example.mobileworkforcemanagementapp.ui.fragments
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.RadioGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -13,6 +15,7 @@ import com.example.mobileworkforcemanagementapp.MyApplication
 import com.example.mobileworkforcemanagementapp.R
 import com.example.mobileworkforcemanagementapp.model.ToDoItem
 import com.example.mobileworkforcemanagementapp.ui.MainActivity
+import com.example.mobileworkforcemanagementapp.ui.fragments.adapters.SpacingItemDecoration
 import com.example.mobileworkforcemanagementapp.ui.fragments.adapters.ToDoItemAdapter
 import com.example.mobileworkforcemanagementapp.ui.fragments.adapters.TodoListener
 import com.example.mobileworkforcemanagementapp.viewmodel.TodoItemViewModel
@@ -23,6 +26,8 @@ import javax.inject.Inject
 open class HomeFragment: Fragment(R.layout.fragment_home), TodoListener {
     private var todoRecyclerView: RecyclerView? = null
     private var addItemButton: Button? = null
+    private var todoItemRadioGroup: RadioGroup? = null
+    private var todoItemsEmptyTextView: TextView? = null
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var toDoItemAdapter: ToDoItemAdapter
     private var navController: NavController? = null
@@ -34,17 +39,31 @@ open class HomeFragment: Fragment(R.layout.fragment_home), TodoListener {
         MyApplication.get(view.context).getApplicationComponent().inject(this)
         todoRecyclerView = view.findViewById(R.id.todo_recyclerview)
         addItemButton = view.findViewById(R.id.add_todo_button)
+        todoItemRadioGroup = view.findViewById(R.id.todo_item_radio_group)
+        todoItemsEmptyTextView = view.findViewById(R.id.todo_list_empty_title)
         linearLayoutManager = LinearLayoutManager(view.context)
         todoRecyclerView?.layoutManager = linearLayoutManager
         toDoItemAdapter = ToDoItemAdapter(this)
         todoRecyclerView?.adapter = toDoItemAdapter
+        todoRecyclerView?.addItemDecoration(SpacingItemDecoration(16))
         navController = view.findNavController()
+        todoItemRadioGroup?.setOnCheckedChangeListener { _, selectedId ->
+            when (selectedId) {
+                R.id.all_radio_button -> toDoItemAdapter.getFilterStateObservable().set(ToDoItemAdapter.FilterState.ALL)
+                R.id.not_complete_radio_button -> toDoItemAdapter.getFilterStateObservable().set(ToDoItemAdapter.FilterState.NOT_COMPLETE)
+                R.id.completed_radio_button -> toDoItemAdapter.getFilterStateObservable().set(ToDoItemAdapter.FilterState.COMPLETED)
+            }
+        }
+
         activity?.let {
             todoItemViewModel = ViewModelProvider(it as MainActivity, viewModelFactory)[TodoItemViewModel::class.java]
         }
         todoItemViewModel?.getToDoItems()?.observe(this, {
             it?.let {
-               toDoItemAdapter.setListItems(it)
+                todoItemRadioGroup?.visibility = if(it.isEmpty()) View.INVISIBLE else View.VISIBLE
+                todoRecyclerView?.visibility = if(it.isEmpty()) View.INVISIBLE else View.VISIBLE
+                todoItemsEmptyTextView?.visibility = if(it.isEmpty()) View.VISIBLE else View.GONE
+                toDoItemAdapter.setListItems(it)
             }
         })
         addItemButton?.setOnClickListener {
