@@ -22,7 +22,7 @@
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:text="@string/edit_button_title"
-        android:textSize="10sp"
+        android:textSize="@dimen/text_medium"
         app:layout_constraintBottom_toTopOf="@+id/todo_item_delete_button"
         app:layout_constraintLeft_toLeftOf="@+id/todo_item_guide_vertical"
         app:layout_constraintRight_toRightOf="parent"
@@ -35,7 +35,7 @@
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:text="@string/delete_button_title"
-        android:textSize="10sp"
+        android:textSize="@dimen/text_medium"
         app:layout_constraintBottom_toTopOf="@+id/todo_item_status_change_button"
         app:layout_constraintLeft_toLeftOf="@+id/todo_item_guide_vertical"
         app:layout_constraintRight_toRightOf="parent"
@@ -46,7 +46,7 @@
         android:id="@+id/todo_item_status_change_button"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:textSize="10sp"
+        android:textSize="@dimen/text_medium"
         app:layout_constraintBottom_toTopOf="@+id/todo_item_add_signature_button"
         app:layout_constraintLeft_toLeftOf="@+id/todo_item_guide_vertical"
         app:layout_constraintRight_toRightOf="parent"
@@ -71,7 +71,8 @@
         app:layout_constraintBottom_toTopOf="@+id/todo_item_status_change_button"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/todo_item_delete_button" />
+        app:layout_constraintTop_toBottomOf="@+id/todo_item_delete_button"
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:layout_width="match_parent"
@@ -81,14 +82,15 @@
         app:layout_constraintBottom_toTopOf="@+id/todo_item_add_signature_button"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/todo_item_status_change_button" />
+        app:layout_constraintTop_toBottomOf="@+id/todo_item_status_change_button"
+        tools:ignore="ContentDescription" />
 
     <Button
         android:id="@+id/todo_item_add_signature_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/add_signature_title"
-        android:textSize="10sp"
+        android:textSize="@dimen/text_medium"
         app:layout_constraintTop_toBottomOf="@+id/todo_item_status_change_button"
         app:layout_constraintLeft_toLeftOf="@+id/todo_item_guide_vertical"
         app:layout_constraintRight_toRightOf="parent"
@@ -113,7 +115,8 @@
         android:layout_height="32dp"
         app:layout_constraintBottom_toBottomOf="@+id/todo_item_add_signature_button"
         app:layout_constraintLeft_toRightOf="@+id/todo_item_signature_textview"
-        app:layout_constraintTop_toTopOf="@+id/todo_item_add_signature_button" />
+        app:layout_constraintTop_toTopOf="@+id/todo_item_add_signature_button"
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:layout_width="0dp"
@@ -123,7 +126,7 @@
         app:layout_constraintTop_toBottomOf="@+id/todo_item_signature_image_view"
         app:layout_constraintLeft_toLeftOf="@+id/todo_item_signature_image_view"
         app:layout_constraintRight_toRightOf="@+id/todo_item_signature_image_view"
- />
+        tools:ignore="ContentDescription" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/todo_item_guide_vertical"

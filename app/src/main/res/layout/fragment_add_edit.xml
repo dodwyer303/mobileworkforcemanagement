@@ -38,13 +38,13 @@
         app:layout_constraintRight_toRightOf="@+id/guide_right_vertical"
         app:layout_constraintTop_toBottomOf="@+id/add_edit_fragment_title"
         app:layout_constraintBottom_toTopOf="@+id/add_edit_item_button"
-        />
+        android:importantForAutofill="no" />
 
     <Button
         android:id="@+id/add_edit_item_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Item"
+        android:text="@string/add_item_title"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"

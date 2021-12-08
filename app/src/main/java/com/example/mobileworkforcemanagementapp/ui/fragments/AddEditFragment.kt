@@ -26,13 +26,13 @@ class AddEditFragment: Fragment(R.layout.fragment_add_edit) {
     private var navController: NavController? = null
     @Inject lateinit var viewModelFactory: ViewModelFactory
     private var todoItemViewModel: TodoItemViewModel? = null
-    private var editedtoDoItem: ToDoItem? = null
+    private var editedToDoItem: ToDoItem? = null
     private var fragmentState: FragmentState = FragmentState.ADD_ITEM
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         MyApplication.get(view.context).getApplicationComponent().inject(this)
-        editedtoDoItem = null
+        editedToDoItem = null
         addEditItemButton = view.findViewById(R.id.add_edit_item_button)
         addEditFragmentTitle = view.findViewById(R.id.add_edit_fragment_title)
         closeTextView = view.findViewById(R.id.close_text_view)
@@ -55,7 +55,7 @@ class AddEditFragment: Fragment(R.layout.fragment_add_edit) {
                 FragmentState.EDIT_ITEM -> {
                     when {
                         !descriptionEditText?.editableText.isNullOrEmpty() -> {
-                            editedtoDoItem?.let {
+                            editedToDoItem?.let {
                                 if(it.id != null) {
                                     todoItemViewModel?.updateToDoItem(ToDoItem.Builder().id(it.id).description(descriptionEditText?.editableText.toString()).completed(it.completed).build())
                                     Toast.makeText(view.context, "Item Updated!",Toast.LENGTH_LONG).show()
@@ -77,14 +77,14 @@ class AddEditFragment: Fragment(R.layout.fragment_add_edit) {
             todoItemViewModel = ViewModelProvider(it as MainActivity, viewModelFactory)[TodoItemViewModel::class.java]
         }
         arguments.let {
-            editedtoDoItem = it?.get(ITEM_TO_EDIT_BUNDLE_KEY) as ToDoItem?
-            fragmentState = if (editedtoDoItem == null) FragmentState.ADD_ITEM else FragmentState.EDIT_ITEM
+            editedToDoItem = it?.get(ITEM_TO_EDIT_BUNDLE_KEY) as ToDoItem?
+            fragmentState = if (editedToDoItem == null) FragmentState.ADD_ITEM else FragmentState.EDIT_ITEM
         }
         val addEditString = if (fragmentState == FragmentState.ADD_ITEM) view.context.getString(R.string.add_item_title) else view.context.getString(R.string.update_item_title)
         addEditFragmentTitle?.text = addEditString
         addEditItemButton?.text = addEditString
-        if(fragmentState == FragmentState.EDIT_ITEM && editedtoDoItem?.description != null) {
-            descriptionEditText?.setText(editedtoDoItem?.description, TextView.BufferType.EDITABLE)
+        if(fragmentState == FragmentState.EDIT_ITEM && editedToDoItem?.description != null) {
+            descriptionEditText?.setText(editedToDoItem?.description, TextView.BufferType.EDITABLE)
         }
     }
 

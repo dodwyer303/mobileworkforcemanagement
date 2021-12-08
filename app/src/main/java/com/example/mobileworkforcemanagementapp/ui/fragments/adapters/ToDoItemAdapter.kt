@@ -1,5 +1,6 @@
 package com.example.mobileworkforcemanagementapp.ui.fragments.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,9 @@ import com.squareup.picasso.MemoryPolicy
 import com.squareup.picasso.NetworkPolicy
 import com.squareup.picasso.Picasso
 import java.io.File
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class ToDoItemAdapter constructor(private val todoListener: TodoListener): RecyclerView.Adapter<ToDoItemAdapter.ViewHolder>() {
     private var itemList: List<ToDoItem> = ArrayList()
@@ -25,7 +29,8 @@ class ToDoItemAdapter constructor(private val todoListener: TodoListener): Recyc
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = itemList[position]
-        holder.mTextDescription.text = item.description
+        holder.mTextDescription.text = holder.itemView.context.getString(R.string.completed_status_placeholder,
+            holder.itemView.context.getString(R.string.description_title), item.description)
         holder.mButtonEdit.setOnClickListener { todoListener.onEditClicked(item) }
         holder.mButtonDelete.setOnClickListener { todoListener.onDeleteClicked(item) }
         if (item.completed) {
@@ -47,13 +52,23 @@ class ToDoItemAdapter constructor(private val todoListener: TodoListener): Recyc
             holder.mButtonAddSignature.setOnClickListener { todoListener.removeSignatureClicked(item) }
             Picasso.get().invalidate(item.signatureUrl)
         }
-        holder.mTextStatus.text = holder.itemView.context.getString(if(item.completed) R.string.status_completed_title else R.string.status_not_complete_title)
+        holder.mSignatureImage.setOnClickListener { todoListener.addSignatureClicked(item) }
+        var statusString = holder.itemView.context.getString(if(item.completed) R.string.status_completed_title else R.string.status_not_complete_title)
+        item.completedDateTime?.let {
+            if (it > 0L && item.completed) {
+                val simpleDateFormat = SimpleDateFormat(COMPLETED_DATE_TIME_FORMAT, Locale.getDefault())
+                val completedDate = Date(it)
+                statusString = "$statusString - ${simpleDateFormat.format(completedDate)}"
+            }
+        }
+        holder.mTextStatus.text = statusString
     }
 
     override fun getItemCount(): Int {
         return itemList.size
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setListItems(todoItems: List<ToDoItem>) {
         itemList = todoItems
         notifyDataSetChanged()
@@ -67,5 +82,9 @@ class ToDoItemAdapter constructor(private val todoListener: TodoListener): Recyc
         val mButtonStatusChange: Button = mView.findViewById(R.id.todo_item_status_change_button)
         val mButtonAddSignature: Button = mView.findViewById(R.id.todo_item_add_signature_button)
         val mSignatureImage: ImageView = mView.findViewById(R.id.todo_item_signature_image_view)
+    }
+
+    companion object {
+        const val COMPLETED_DATE_TIME_FORMAT = "EEE, MMM d, ''yy h:mm a"
     }
 }

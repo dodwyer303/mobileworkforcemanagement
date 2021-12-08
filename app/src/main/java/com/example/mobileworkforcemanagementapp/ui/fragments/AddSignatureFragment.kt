@@ -18,12 +18,18 @@ import com.example.mobileworkforcemanagementapp.ui.MainActivity
 import com.example.mobileworkforcemanagementapp.ui.view.SignatureView
 import com.example.mobileworkforcemanagementapp.viewmodel.TodoItemViewModel
 import com.example.mobileworkforcemanagementapp.viewmodel.ViewModelFactory
+import java.io.File
 import javax.inject.Inject
+import android.graphics.BitmapFactory
+import android.view.ViewTreeObserver
+import java.lang.Exception
+
 
 class AddSignatureFragment: Fragment(R.layout.fragment_add_signature) {
     private var signatureView: SignatureView? = null
     private var closeTextView: TextView? = null
     private var addSignatureButton: Button? = null
+    private var clearButton: Button? = null
     private var navController: NavController? = null
     @Inject lateinit var viewModelFactory: ViewModelFactory
     private var todoItemViewModel: TodoItemViewModel? = null
@@ -34,6 +40,7 @@ class AddSignatureFragment: Fragment(R.layout.fragment_add_signature) {
         MyApplication.get(view.context).getApplicationComponent().inject(this)
         navController = view.findNavController()
         addSignatureButton = view.findViewById(R.id.add_signature_button)
+        clearButton = view.findViewById(R.id.clear_button)
         signatureView = view.findViewById(R.id.signature_view)
         closeTextView = view.findViewById(R.id.close_text_view)
         closeTextView?.setOnClickListener {
@@ -59,6 +66,33 @@ class AddSignatureFragment: Fragment(R.layout.fragment_add_signature) {
                     Toast.makeText(view.context, "A signature has not yet been added!", Toast.LENGTH_LONG).show()
                 }
             }
+        }
+
+        signatureView?.let {
+            toDoItem?.signatureUrl?.let { signature ->
+                if (signature.isNotEmpty()) {
+                    it.viewTreeObserver.addOnGlobalLayoutListener(object :
+                        ViewTreeObserver.OnGlobalLayoutListener {
+                        override fun onGlobalLayout() {
+                            try {
+                                val file = File(signature)
+                                val bmOptions = BitmapFactory.Options()
+                                var bitmap = BitmapFactory.decodeFile(file.absolutePath, bmOptions)
+                                bitmap =
+                                    Bitmap.createScaledBitmap(bitmap!!, it.width, it.height, true)
+                                it.setBitmap(bitmap)
+                            } catch (e: Exception) {
+                                e.printStackTrace()
+                            }
+                            it.viewTreeObserver.removeOnGlobalLayoutListener(this)
+                        }
+
+                    })
+                }
+            }
+        }
+        clearButton?.setOnClickListener {
+            signatureView?.clear()
         }
     }
 

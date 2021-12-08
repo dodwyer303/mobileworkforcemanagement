@@ -12,16 +12,18 @@ class DatabaseHelper(
     context: Context
 ) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
     companion object {
-        private const val DATABASE_VERSION = 2
+        private const val DATABASE_VERSION = 3
         private const val DATABASE_NAME = "ToDoItemDatabase"
         private const val TABLE_TODO = "ToDoItemTable"
         private const val KEY_ID = "id"
         private const val KEY_DESCRIPTION = "description"
         private const val KEY_COMPLETED = "completed"
         private const val KEY_SIGNATURE_URL = "signatureUrl"
+        private const val KEY_COMPLETED_DATE_TIME = "completedDateTime"
         private const val CREATE_TODO_TABLE = ("CREATE TABLE " + TABLE_TODO + "("
                 + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_DESCRIPTION + " TEXT,"
                 + KEY_SIGNATURE_URL + " TEXT DEFAULT '',"
+                + KEY_COMPLETED_DATE_TIME + " INTEGER DEFAULT 0,"
                 + KEY_COMPLETED + " INTEGER DEFAULT 0" + ")")
     }
     override fun onCreate(db: SQLiteDatabase?) {
@@ -39,6 +41,9 @@ class DatabaseHelper(
         contentValues.put(KEY_DESCRIPTION, toDoItem.description)
         toDoItem.signatureUrl?. let{
             contentValues.put(KEY_SIGNATURE_URL, it)
+        }
+        toDoItem.completedDateTime?. let{
+            contentValues.put(KEY_COMPLETED_DATE_TIME, it)
         }
         contentValues.put(KEY_COMPLETED, if(toDoItem.completed) 1 else 0 )
         val success = db.insert(TABLE_TODO, null, contentValues)
@@ -75,6 +80,13 @@ class DatabaseHelper(
                     }
                 }
 
+                cursor?.getColumnIndex(KEY_COMPLETED_DATE_TIME)?.let {
+                    val completedDateTime = cursor.getLong(it)
+                    if (completedDateTime != 0L) {
+                        builder.completedDateTime(completedDateTime)
+                    }
+                }
+
                 cursor?.getColumnIndex(KEY_COMPLETED)?.let {
                     builder.completed(cursor.getInt(it) == 1)
                 }
@@ -92,6 +104,9 @@ class DatabaseHelper(
         contentValues.put(KEY_DESCRIPTION, toDoItem.description)
         toDoItem.signatureUrl?. let{
             contentValues.put(KEY_SIGNATURE_URL, it)
+        }
+        toDoItem.completedDateTime?. let{
+            contentValues.put(KEY_COMPLETED_DATE_TIME, it)
         }
         contentValues.put(KEY_COMPLETED, if(toDoItem.completed) 1 else 0 )
         val success = db.update(TABLE_TODO, contentValues, "$KEY_ID=${toDoItem.id}",null)

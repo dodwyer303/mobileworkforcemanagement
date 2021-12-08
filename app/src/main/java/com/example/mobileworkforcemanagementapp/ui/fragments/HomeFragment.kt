@@ -17,6 +17,7 @@ import com.example.mobileworkforcemanagementapp.ui.fragments.adapters.ToDoItemAd
 import com.example.mobileworkforcemanagementapp.ui.fragments.adapters.TodoListener
 import com.example.mobileworkforcemanagementapp.viewmodel.TodoItemViewModel
 import com.example.mobileworkforcemanagementapp.viewmodel.ViewModelFactory
+import java.util.*
 import javax.inject.Inject
 
 open class HomeFragment: Fragment(R.layout.fragment_home), TodoListener {
@@ -65,20 +66,21 @@ open class HomeFragment: Fragment(R.layout.fragment_home), TodoListener {
 
     override fun onUndoClicked(toDoItem: ToDoItem) {
         if(toDoItem.id != null && toDoItem.description != null && toDoItem.completed) {
-            val updatedToDoItem = ToDoItem.Builder().id(toDoItem.id).description(toDoItem.description).completed(false).build()
+            val updatedToDoItem = ToDoItem.Builder().id(toDoItem.id).description(toDoItem.description).completedDateTime(0L).completed(false).build()
             todoItemViewModel?.updateToDoItem(updatedToDoItem)
         }
     }
 
     override fun onCompleteClicked(toDoItem: ToDoItem) {
         if(toDoItem.id != null && toDoItem.description != null && !toDoItem.completed) {
-            val updatedToDoItem = ToDoItem.Builder().id(toDoItem.id).description(toDoItem.description).completed(true).build()
+            Calendar.getInstance().timeInMillis
+            val updatedToDoItem = ToDoItem.Builder().id(toDoItem.id).description(toDoItem.description).completedDateTime(Calendar.getInstance().timeInMillis).completed(true).build()
             todoItemViewModel?.updateToDoItem(updatedToDoItem)
         }
     }
 
     override fun addSignatureClicked(toDoItem: ToDoItem) {
-        if(toDoItem.id != null && toDoItem.description != null && toDoItem.signatureUrl.isNullOrEmpty()) {
+        if(toDoItem.id != null && toDoItem.description != null) {
             val action = HomeFragmentDirections.actionHomeFragmentToAddSignatureFragment(toDoItem)
             navController?.navigate(action)
         }

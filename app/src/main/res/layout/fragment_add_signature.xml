@@ -2,8 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/close_text_view"
@@ -18,8 +17,8 @@
         android:id="@+id/add_signature_fragment_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:layout_marginTop="32dp"
+        android:textSize="@dimen/text_large"
+        android:layout_marginTop="@dimen/dimen_xx_large"
         android:text="@string/add_signature_title"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -29,20 +28,22 @@
         android:id="@+id/signature_view_layout"
         android:layout_width="0dp"
         android:layout_height="110dp"
+        android:layout_marginTop="@dimen/dimen_xx_large"
         app:layout_constraintLeft_toLeftOf="@+id/guide_left_vertical"
         app:layout_constraintRight_toRightOf="@+id/guide_right_vertical"
-        app:layout_constraintTop_toBottomOf="@+id/add_signature_fragment_title"
-        app:layout_constraintBottom_toTopOf="@+id/add_signature_button">
+        app:layout_constraintTop_toBottomOf="@+id/add_signature_fragment_title" >
+
         <View
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/description_background"
             />
+
         <com.example.mobileworkforcemanagementapp.ui.view.SignatureView
             android:id="@+id/signature_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="4dp"
+            android:layout_margin="@dimen/dimen_x_small"
             android:layout_gravity="center" />
     </FrameLayout>
 
@@ -51,18 +52,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/add_signature_title"
+        android:layout_marginTop="@dimen/dimen_xx_large"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description_edit_text"/>
+        app:layout_constraintTop_toBottomOf="@+id/signature_view_layout"/>
+
+    <Button
+        android:id="@+id/clear_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/clear_title"
+        android:layout_marginTop="@dimen/dimen_medium"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_signature_button"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guide_top_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".1"/>
+        app:layout_constraintGuide_percent=".05"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guide_left_vertical"

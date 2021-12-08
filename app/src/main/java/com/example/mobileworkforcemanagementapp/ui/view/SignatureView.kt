@@ -91,6 +91,18 @@ class SignatureView constructor(context: Context, attrs: AttributeSet): View(con
     fun isStrokeAdded(): Boolean {
         return strokeAdded
     }
+    fun setBitmap(bitmap: Bitmap) {
+        with(canvas) {
+            drawBitmap(bitmap, 0f, 0f, bitMapPaint)
+            drawPath(path, paint)
+        }
+        strokeAdded = true
+    }
+
+    fun clear() {
+        canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.MULTIPLY)
+        strokeAdded = false
+    }
 
     companion object {
         const val TOUCH_TOLERANCE = 4f
