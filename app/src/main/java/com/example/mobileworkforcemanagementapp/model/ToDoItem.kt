@@ -33,4 +33,15 @@ class ToDoItem(val id: Int?, val description: String?, val completed: Boolean, v
 
         fun build() = ToDoItem(this)
     }
+
+    fun equalsIgnoreId(other: Any?): Boolean {
+        return when (other) {
+            is ToDoItem -> {
+                (this.description == other.description
+                        && this.completed == other.completed &&
+                        this.completedDateTime == other.completedDateTime)
+            }
+            else -> false
+        }
+    }
 }

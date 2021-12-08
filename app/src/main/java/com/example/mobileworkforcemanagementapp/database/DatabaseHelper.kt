@@ -122,4 +122,8 @@ class DatabaseHelper(
         db.close()
         return success
     }
+
+    fun deleteAllToDoItems() {
+        val db = this.writableDatabase
+        db.execSQL("DELETE FROM $TABLE_TODO")}
 }
