@@ -22,4 +22,7 @@
     <string name="signature_title">Signature:\u0020</string>
     <string name="completed_status_placeholder">%1$s %2$s</string>
     <string name="todo_items_empty_title">There are no items to show</string>
+    <string name="delete_message_title">Are you sure you want to delete this item?</string>
+    <string name="no_choice_title">No</string>
+    <string name="yes_choice_title">Yes</string>
 </resources>

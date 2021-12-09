@@ -9,6 +9,7 @@
         android:id="@+id/close_text_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
         android:text="@string/back_button_title"
         android:textSize="20sp"
         app:layout_constraintLeft_toRightOf="@+id/guide_left_vertical"

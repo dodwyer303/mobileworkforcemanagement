@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.RadioGroup
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -78,9 +79,14 @@ open class HomeFragment: Fragment(R.layout.fragment_home), TodoListener {
     }
 
     override fun onDeleteClicked(toDoItem: ToDoItem){
-        if(toDoItem.id != null) {
-            todoItemViewModel?.deleteToDoItem(toDoItem)
-        }
+        AlertDialog.Builder(context!!, R.style.CustomAlertDialog).setTitle(getString(R.string.delete_message_title))
+            .setNegativeButton(getString(R.string.no_choice_title), null)
+            .setPositiveButton(getString(R.string.yes_choice_title)
+        ) { _, _ ->
+            if (toDoItem.id != null) {
+                todoItemViewModel?.deleteToDoItem(toDoItem)
+            }
+        }.create().show()
     }
 
     override fun onUndoClicked(toDoItem: ToDoItem) {
