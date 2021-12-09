@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="CustomAlertDialog" parent="Base.Theme.AppCompat.Light.Dialog">
-        <item name="android:textColor">@color/black</item>
+    <style name="CustomAlertDialog" parent="Theme.MaterialComponents.Light.Dialog.Alert">
+        <item name="android:textColor">@color/primary_blue</item>
         <item name="android:textColorPrimary">@color/primary_blue</item>
         <item name="android:colorAccent">@color/secondary_blue</item>
     </style>
